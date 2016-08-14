@@ -1,0 +1,22 @@
+
+import java.sql.*;
+
+public class jdbc_demo_main {
+
+	public static void main(String[] args) {
+		System.out.println("Test JDBC Example");
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection myconn=DriverManager.getConnection("jdbc:mysql://localhost:3306","root","1234");//1.get a connection to data base
+			Statement mystmt=myconn.createStatement();//2.create a statement 
+			ResultSet myres=mystmt.executeQuery("SHOW DATABASES");//3.Execute a sql query
+			while(myres.next())
+			{
+				System.out.println(myres.getString("Database"));//appending The Database column values 	
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();	
+		}
+	}
+}
